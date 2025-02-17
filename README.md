@@ -27,7 +27,7 @@ Tech Baba is an AI-powered chatbot designed to assist developers with coding-rel
 ### 1️⃣ Clone the Repository
 
 ```bash
-$ git clone [https://github.com/ronakbediya310/Customized-Chatbot/]
+$ git clone https://github.com/ronakbediya310/Customized-Chatbot/
 $ cd Customized-Chatbot
 ```
 
