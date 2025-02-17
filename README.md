@@ -135,9 +135,6 @@ We welcome contributions! Please follow these steps:
 3. Commit changes (`git commit -m "Added new feature"`)
 4. Push and create a Pull Request
 
-## License
-
-This project is licensed under the **MIT License**.
 
 ---
 
