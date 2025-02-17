@@ -64,7 +64,7 @@ http://127.0.0.1:8000/users/login
 - Logout securely when done.
 
 ## File Structure
-
+```
 📂 project_root/
 │── 📂 chatbot/
 │   │── 📂 static/
@@ -92,7 +92,7 @@ http://127.0.0.1:8000/users/login
 │── 📄 manage.py
 │── 📄 README.md
 └── 📄 requirements.txt
-
+```
 
 ## Customization
 - Modify **styles** in `static/chatbot/styles.css`.
