@@ -27,8 +27,8 @@ Tech Baba is an AI-powered chatbot designed to assist developers with coding-rel
 ### 1️⃣ Clone the Repository
 
 ```bash
-$ git clone https://github.com/yourusername/django-chatbot.git
-$ cd django-chatbot
+$ git clone [https://github.com/ronakbediya310/Customized-Chatbot/]
+$ cd Customized-Chatbot
 ```
 
 ### 2️⃣ Create & Activate a Virtual Environment
