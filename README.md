@@ -121,7 +121,7 @@ http://127.0.0.1:8000/users/login
 
 For deploying to **Heroku**, **AWS**, or **VPS**, follow these steps:
 
-1. **Set up a production database (PostgreSQL)**
+1. **Set up a production database (MySQL)**
 2. **Configure `ALLOWED_HOSTS` in settings.py**
 3. **Use Gunicorn for WSGI server**
 4. **Enable Static Files Handling**
