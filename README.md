@@ -141,4 +141,4 @@ This project is licensed under the **MIT License**.
 
 ---
 
-🚀 **Developed with ❤️ by [Ronak Bediya]**
+🚀 **Developed with ❤️ by Ronak Bediya**
