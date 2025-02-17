@@ -6,13 +6,13 @@ Tech Baba is an AI-powered chatbot designed to assist developers with coding-rel
 
 ## 🎯 Features
 
-✅ Explain Code – Understand complex code snippets 📖
-✅ Debug Code – Identify and fix issues in your code 🐞
-✅ Optimize Code – Improve efficiency and performance 🚀
-✅ Convert Code – Transform code between languages 🔄
-✅ Generate Code – Auto-generate templates and logic ⚙️
-✅ User Authentication – Secure login/logout functionality 🔐
-✅ Chat History – View past conversations 📜
+- ✅ Explain Code – Understand complex code snippets 📖
+- ✅ Debug Code – Identify and fix issues in your code 🐞
+- ✅ Optimize Code – Improve efficiency and performance 🚀
+- ✅ Convert Code – Transform code between languages 🔄
+- ✅ Generate Code – Auto-generate templates and logic ⚙️
+- ✅ User Authentication – Secure login/logout functionality 🔐
+- ✅ Chat History – View past conversations 📜
 
 ## Tech Stack
 
