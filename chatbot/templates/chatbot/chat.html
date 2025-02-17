@@ -1,0 +1,160 @@
+{% block content %} {% load static %}
+<div class="chat-container">
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'chatbot/styles.css' %}"
+  />
+
+  <div class="chat-header">
+    <span class="chat-title"
+      >"Tech Baba" – Tech related badhi vastu ma expert! ⚙️</span
+    >
+    <div class="auth-links">
+      <a href="{% url 'welcome' %}"
+        ><span>Welcome, {{ user.username }}</span></a
+      >
+      <a href="{% url 'chat_history' %}">📜 View History</a>
+      <a href="{% url 'logout' %}">🚪 Logout</a>
+    </div>
+  </div>
+
+  <div class="chat-box" id="chat-box">
+    {% if chat_history %} {% for chat in chat_history %}
+    <div class="chat-message user">{{ chat.user }}</div>
+    <div class="chat-message bot">
+      <span class="bot-response">{{ chat.bot|linebreaksbr }}</span>
+    </div>
+    <div class="chat-timestamp">📅 {{ chat.timestamp }}</div>
+    {% endfor %} {% else %}
+    <div id="welcome-section">
+      <div class="chat-message bot">🤖 अपनी समस्या बताओ बच्चा</div>
+
+      <div class="quick-actions">
+        <button class="quick-btn" onclick="processChat('explain')">
+          📖 Explain Code
+        </button>
+        <button class="quick-btn" onclick="processChat('debug')">
+          🐞 Debug Code
+        </button>
+        <button class="quick-btn" onclick="processChat('optimize')">
+          🚀 Optimize Code
+        </button>
+        <button class="quick-btn" onclick="processChat('convert')">
+          🔄 Convert Code
+        </button>
+        <button class="quick-btn" onclick="processChat('generate')">
+          ⚙️ Generate Code
+        </button>
+      </div>
+
+      <div class="functionality-message">
+        ⚡ To use above 5 functionalities, please paste your code in the
+        textarea below and then select an action. <br />
+        📌 Example: Paste your Python, Java, or C++ code in below input field
+        and click 'Explain Code' to understand it better!
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="chat-input">
+    <form method="POST" id="chat-form">
+      {% csrf_token %}
+      <input type="hidden" name="operation" id="operation" value="" />
+
+      <div class="input-container">
+        <textarea
+          name="question"
+          id="question"
+          placeholder="Type your message..."
+          required
+        ></textarea>
+        <button type="submit">➤</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  let chatBox = document.getElementById("chat-box");
+  let questionInput = document.getElementById("question");
+  // This function is created to maintain scroll functionality
+  function scrollToBottom(force = false) {
+    if (
+      force ||
+      chatBox.scrollTop + chatBox.clientHeight >= chatBox.scrollHeight - 50
+    ) {
+      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+    }
+  }
+  // This is function which handles quick action button functionality
+  function processChat(operation) {
+    let chatBox = document.getElementById("chat-box");
+    let questionInput = document.getElementById("question");
+    document.getElementById("operation").value = operation;
+    let formData = new FormData(document.getElementById("chat-form"));
+    let userQuery = questionInput.value.trim();
+    if (!userQuery && operation !== "") {
+      userQuery = operation;
+    }
+    if (!userQuery) return;
+    let userMessage = `<div class="chat-message user">${userQuery}</div>`;
+    chatBox.innerHTML += userMessage;
+    questionInput.value = "";
+    let welcomeSection = document.getElementById("welcome-section");
+    if (welcomeSection) welcomeSection.style.display = "none";
+
+    scrollToBottom(true);
+    // API call happens here
+    fetch("{% url 'chatbot_response' %}", {
+      method: "POST",
+      body: formData,
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.bot) {
+          let botMessage = `<div class="chat-message bot"><span class="bot-response">${data.bot}</span></div>`;
+          let timestamp = `<div class="chat-timestamp">📅 ${data.timestamp}</div>`;
+          chatBox.innerHTML += botMessage + timestamp;
+          scrollToBottom(true);
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+  // DOM reload action
+  document.addEventListener("DOMContentLoaded", function () {
+    let chatBox = document.getElementById("chat-box");
+    let questionInput = document.getElementById("question");
+
+    scrollToBottom(true);
+    // submit button click without any quick action
+    document
+      .getElementById("chat-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        let userQuery = questionInput.value.trim();
+        if (!userQuery) return;
+        // Hiding welcome section once user initiate the chat;
+        let welcomeSection = document.getElementById("welcome-section");
+        if (welcomeSection) welcomeSection.style.display = "none";
+
+        processChat("");
+      });
+    // Enter Key Press
+    questionInput.addEventListener("keypress", function (event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        let userQuery = questionInput.value.trim();
+        if (!userQuery) return;
+
+        let operation = document.getElementById("operation").value || "";
+        processChat(operation);
+      }
+    });
+
+    questionInput.focus();
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+
+{% load static %}
+ {% block content %}
+<link rel="stylesheet" href="{% static 'chatbot/styles.css' %}" />
+<div class="auth-container">
+  <h2>Logged Out</h2>
+  <p>You have been successfully logged out.</p>
+  <a href="{% url 'login' %}">Login Again</a>
+</div>
+{% endblock %}

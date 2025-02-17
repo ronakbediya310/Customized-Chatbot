@@ -1,0 +1,64 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+myenv/
+env/
+*.env
+
+# Django stuff
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# Ignore all migration files except __init__.py
+**/migrations/*
+!**/migrations/__init__.py
+# Logs
+logs/
+*.log
+
+# Local development settings
+settings_local.py
+
+# Security
+.env
+*.pem
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Migrations (optional: keep if tracking migrations)
+**/migrations/*.pyc
+**/migrations/*.py, !**/migrations/__init__.py
+
+# Pip dependencies
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+__coverage__/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# macOS
+.DS_Store

@@ -1,0 +1,106 @@
+{% load static %} {% block content %}
+<div class="welcome-container">
+  <div class="welcome-card">
+    <h2 class="welcome-title">Welcome, {{ user.username }}! 🎉</h2>
+    <p class="welcome-message">
+      You have successfully logged in. Start exploring your dashboard now!
+    </p>
+    <div class="welcome-actions">
+      <a href="{% url 'chatbot_response' %}" class="btn-primary"
+        >💬 Start Chat</a
+      >
+      <a href="{% url 'chat_history' %}" class="btn-secondary"
+        >📜 View Chat History</a
+      >
+      <a href="{% url 'logout' %}" class="btn-logout">🚪 Logout</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Center Content */
+  .welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: linear-gradient(to right, #3a7bd5, #3a6073);
+  }
+
+  /* Card Styling */
+  .welcome-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  /* Title */
+  .welcome-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #3a6073;
+  }
+
+  /* Message */
+  .welcome-message {
+    font-size: 16px;
+    margin: 15px 0;
+    color: #555;
+  }
+
+  /* Buttons */
+  .welcome-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .welcome-actions a {
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .btn-logout {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  /* Hover Effects */
+  .welcome-actions a:hover {
+    opacity: 0.8;
+  }
+
+  /* Fade-In Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+{% endblock %}
